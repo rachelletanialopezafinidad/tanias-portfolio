@@ -7,7 +7,7 @@ import emailjs from '@emailjs/browser'
 
 const EJS_SERVICE  = 'service_sixko14'
 const EJS_TEMPLATE = 'template_bpy5eue'
-const EJS_PUBLIC   = 'TuUH5LwvTYL9DQU6FEs8h'
+const EJS_PUBLIC   = '1uc5YRX0GLlYz13Ie'
 
 export default function Home() {
   const [isDark, setIsDark] = useState(false)
