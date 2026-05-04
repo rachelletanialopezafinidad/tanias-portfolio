@@ -204,7 +204,7 @@ export default function Home() {
               zIndex: 1,
             }}>
               <Image
-                src="/tania-hero.webp"
+                src="/photo 2.webp"
                 alt="Rachelle Tania Lopez — Executive Assistant"
                 fill
                 priority
