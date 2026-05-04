@@ -44,8 +44,6 @@ export default function Home() {
         EJS_PUBLIC,
       )
       setFormStatus('sent')
-      setFormData({ name: '', email: '', message: '' })
-      setTimeout(() => setFormStatus('idle'), 4000)
     } catch {
       setFormStatus('idle')
       alert('Something went wrong. Please try again or email directly.')
@@ -725,56 +723,96 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Right: Form */}
-          <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-            <div>
-              <label style={{ display: 'block', fontSize: '0.8125rem', fontWeight: 600, color: 'var(--color-text)', marginBottom: '0.4rem' }}>
-                Name <span style={{ color: 'var(--color-accent)' }}>*</span>
-              </label>
-              <input
-                type="text" required
-                value={formData.name}
-                onChange={e => setFormData({ ...formData, name: e.target.value })}
-                placeholder="Your name"
-                className="input-field"
-              />
+          {/* Right: Form or Thank You */}
+          {formStatus === 'sent' ? (
+            <div style={{
+              display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+              textAlign: 'center', gap: '1.25rem',
+              backgroundColor: 'var(--color-card)',
+              border: '1px solid var(--color-border)',
+              borderRadius: '1rem',
+              padding: '3rem 2rem',
+            }}>
+              {/* Checkmark circle */}
+              <div style={{
+                width: '64px', height: '64px', borderRadius: '50%',
+                backgroundColor: 'var(--color-accent-light)',
+                border: '2px solid var(--color-accent)',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+              }}>
+                <Check size={28} color="var(--color-accent)" strokeWidth={2.5} />
+              </div>
+
+              <div>
+                <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.75rem', fontWeight: 700, color: 'var(--color-text)', marginBottom: '0.5rem' }}>
+                  Thank you, {formData.name}!
+                </h3>
+                <p style={{ fontSize: '1rem', lineHeight: 1.75, color: 'var(--color-text-secondary)', maxWidth: '34ch', margin: '0 auto' }}>
+                  Your message has been received. I'll get back to you within 24 hours.
+                </p>
+              </div>
+
+              <p style={{ fontSize: '0.875rem', color: 'var(--color-text-secondary)', fontStyle: 'italic' }}>
+                Looking forward to working with you!
+              </p>
+
+              <button
+                onClick={() => { setFormStatus('idle'); setFormData({ name: '', email: '', message: '' }) }}
+                className="btn-ghost"
+                style={{ marginTop: '0.5rem' }}
+              >
+                Send Another Message
+              </button>
             </div>
-            <div>
-              <label style={{ display: 'block', fontSize: '0.8125rem', fontWeight: 600, color: 'var(--color-text)', marginBottom: '0.4rem' }}>
-                Email <span style={{ color: 'var(--color-accent)' }}>*</span>
-              </label>
-              <input
-                type="email" required
-                value={formData.email}
-                onChange={e => setFormData({ ...formData, email: e.target.value })}
-                placeholder="your@email.com"
-                className="input-field"
-              />
-            </div>
-            <div>
-              <label style={{ display: 'block', fontSize: '0.8125rem', fontWeight: 600, color: 'var(--color-text)', marginBottom: '0.4rem' }}>
-                Message <span style={{ color: 'var(--color-accent)' }}>*</span>
-              </label>
-              <textarea
-                required rows={5}
-                value={formData.message}
-                onChange={e => setFormData({ ...formData, message: e.target.value })}
-                placeholder="Tell me about your needs..."
-                className="input-field"
-                style={{ resize: 'vertical' }}
-              />
-            </div>
-            <button
-              type="submit"
-              disabled={formStatus !== 'idle'}
-              className="btn-primary"
-              style={{ justifyContent: 'center', opacity: formStatus === 'sending' ? 0.75 : 1 }}
-            >
-              {formStatus === 'idle' && <><span>Send Message</span><ArrowRight size={16} /></>}
-              {formStatus === 'sending' && 'Sending...'}
-              {formStatus === 'sent' && <><Check size={16} /><span>Message Sent!</span></>}
-            </button>
-          </form>
+          ) : (
+            <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+              <div>
+                <label style={{ display: 'block', fontSize: '0.8125rem', fontWeight: 600, color: 'var(--color-text)', marginBottom: '0.4rem' }}>
+                  Name <span style={{ color: 'var(--color-accent)' }}>*</span>
+                </label>
+                <input
+                  type="text" required
+                  value={formData.name}
+                  onChange={e => setFormData({ ...formData, name: e.target.value })}
+                  placeholder="Your name"
+                  className="input-field"
+                />
+              </div>
+              <div>
+                <label style={{ display: 'block', fontSize: '0.8125rem', fontWeight: 600, color: 'var(--color-text)', marginBottom: '0.4rem' }}>
+                  Email <span style={{ color: 'var(--color-accent)' }}>*</span>
+                </label>
+                <input
+                  type="email" required
+                  value={formData.email}
+                  onChange={e => setFormData({ ...formData, email: e.target.value })}
+                  placeholder="your@email.com"
+                  className="input-field"
+                />
+              </div>
+              <div>
+                <label style={{ display: 'block', fontSize: '0.8125rem', fontWeight: 600, color: 'var(--color-text)', marginBottom: '0.4rem' }}>
+                  Message <span style={{ color: 'var(--color-accent)' }}>*</span>
+                </label>
+                <textarea
+                  required rows={5}
+                  value={formData.message}
+                  onChange={e => setFormData({ ...formData, message: e.target.value })}
+                  placeholder="Tell me about your needs..."
+                  className="input-field"
+                  style={{ resize: 'vertical' }}
+                />
+              </div>
+              <button
+                type="submit"
+                disabled={formStatus === 'sending'}
+                className="btn-primary"
+                style={{ justifyContent: 'center', opacity: formStatus === 'sending' ? 0.75 : 1 }}
+              >
+                {formStatus === 'sending' ? 'Sending...' : <><span>Send Message</span><ArrowRight size={16} /></>}
+              </button>
+            </form>
+          )}
         </div>
       </section>
 
