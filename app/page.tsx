@@ -3,6 +3,11 @@
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { Moon, Sun, ArrowRight, Mail, Phone, MapPin, Check, ChevronRight } from 'lucide-react'
+import emailjs from '@emailjs/browser'
+
+const EJS_SERVICE  = 'service_sixko14'
+const EJS_TEMPLATE = 'template_bpy5eue'
+const EJS_PUBLIC   = 'TuUH5LwvTYL9DQU6FEs8h'
 
 export default function Home() {
   const [isDark, setIsDark] = useState(false)
@@ -25,10 +30,25 @@ export default function Home() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setFormStatus('sending')
-    await new Promise(r => setTimeout(r, 1000))
-    setFormStatus('sent')
-    setFormData({ name: '', email: '', message: '' })
-    setTimeout(() => setFormStatus('idle'), 4000)
+    try {
+      await emailjs.send(
+        EJS_SERVICE,
+        EJS_TEMPLATE,
+        {
+          from_name:    formData.name,
+          from_email:   formData.email,
+          message:      formData.message,
+          reply_to:     formData.email,
+        },
+        EJS_PUBLIC,
+      )
+      setFormStatus('sent')
+      setFormData({ name: '', email: '', message: '' })
+      setTimeout(() => setFormStatus('idle'), 4000)
+    } catch {
+      setFormStatus('idle')
+      alert('Something went wrong. Please try again or email directly.')
+    }
   }
 
   if (!mounted) return null
