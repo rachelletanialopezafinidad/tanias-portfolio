@@ -424,136 +424,201 @@ export default function Home() {
       </section>
 
       {/* ── TESTIMONIALS ── */}
-      <section id="testimonials" style={{ backgroundColor: 'var(--color-bg-alt)', padding: '6rem 1.5rem', borderBottom: '1px solid var(--color-border)' }}>
-        <div style={{ maxWidth: '72rem', margin: '0 auto' }}>
-          <span className="section-label">Kind Words</span>
-          <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(2rem, 4vw, 2.75rem)', marginBottom: '3rem' }}>
-            What Clients &amp; Colleagues Say
-          </h2>
+      <section id="testimonials" style={{ position: 'relative', backgroundColor: 'var(--color-bg)', padding: '6rem 1.5rem', borderBottom: '1px solid var(--color-border)', overflow: 'hidden' }}>
 
-          {/* Featured testimonial */}
+        {/* Subtle background orb */}
+        <div aria-hidden="true" style={{
+          position: 'absolute', bottom: '-10%', left: '-5%',
+          width: '500px', height: '500px', borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(201,169,97,0.10) 0%, transparent 70%)',
+          filter: 'blur(48px)', pointerEvents: 'none',
+        }} />
+
+        <div style={{ position: 'relative', zIndex: 1, maxWidth: '72rem', margin: '0 auto' }}>
+
+          {/* Header row */}
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '3rem', flexWrap: 'wrap', gap: '1rem' }}>
+            <div>
+              <span className="section-label">Kind Words</span>
+              <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(2rem, 4vw, 2.75rem)', margin: 0 }}>
+                What Clients &amp; Colleagues Say
+              </h2>
+            </div>
+            {/* Star rating summary */}
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '0.25rem' }}>
+              <div style={{ display: 'flex', gap: '3px' }}>
+                {[...Array(5)].map((_, i) => (
+                  <svg key={i} width="18" height="18" viewBox="0 0 20 20" fill="var(--color-accent)" aria-hidden="true">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                ))}
+              </div>
+              <span style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)' }}>5 references · 5 companies</span>
+            </div>
+          </div>
+
+          {/* Featured testimonial — full width, accent bg */}
           <blockquote style={{
-            backgroundColor: 'var(--color-card)',
-            border: '1px solid var(--color-border)',
-            borderRadius: '1rem',
-            padding: '2.5rem',
-            marginBottom: '1.5rem',
             position: 'relative',
+            background: 'linear-gradient(135deg, var(--color-accent) 0%, #b08a45 100%)',
+            borderRadius: '1.25rem',
+            padding: 'clamp(2rem, 4vw, 3rem)',
+            marginBottom: '1.5rem',
             overflow: 'hidden',
           }}>
-            {/* Decorative quote mark */}
+            {/* Background quote glyph */}
             <span aria-hidden="true" style={{
-              position: 'absolute', top: '1rem', right: '1.75rem',
+              position: 'absolute', bottom: '-2rem', right: '2rem',
               fontFamily: "'Playfair Display', serif",
-              fontSize: '8rem', lineHeight: 1,
-              color: 'var(--color-accent)', opacity: 0.12,
+              fontSize: '14rem', lineHeight: 1,
+              color: '#fff', opacity: 0.07,
               userSelect: 'none', pointerEvents: 'none',
+              letterSpacing: '-0.05em',
             }}>&ldquo;</span>
+
+            {/* Opening quote icon */}
+            <div style={{ marginBottom: '1.25rem' }}>
+              <svg width="36" height="28" viewBox="0 0 36 28" fill="none" aria-hidden="true">
+                <path d="M0 28V17.5C0 7.833 5.167 2.167 15.5 0L17 3.5C12.167 5 9.5 8 9 12H16V28H0ZM20 28V17.5C20 7.833 25.167 2.167 35.5 0L37 3.5C32.167 5 29.5 8 29 12H36V28H20Z" fill="white" fillOpacity="0.5"/>
+              </svg>
+            </div>
 
             <p style={{
               fontFamily: "'Playfair Display', serif",
-              fontSize: 'clamp(1.1rem, 2.5vw, 1.35rem)',
-              lineHeight: 1.7,
-              color: 'var(--color-text)',
+              fontSize: 'clamp(1.1rem, 2.2vw, 1.3rem)',
+              lineHeight: 1.75,
+              color: '#fff',
               fontStyle: 'italic',
-              maxWidth: '70ch',
-              marginBottom: '1.75rem',
+              maxWidth: '72ch',
+              marginBottom: '2rem',
             }}>
-              &ldquo;Tania is the kind of executive assistant you hope to find once in a career. She managed our inbox, finances, and website with remarkable precision — and always handled sensitive information with complete professionalism. She anticipated needs before they were even voiced.&rdquo;
+              Tania is the kind of executive assistant you hope to find once in a career. She managed our inbox, finances, and website with remarkable precision — and always handled sensitive information with complete professionalism. She anticipated needs before they were even voiced.
             </p>
 
             <footer style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
               <div style={{
-                width: '48px', height: '48px', borderRadius: '50%',
-                backgroundColor: 'var(--color-accent)',
+                width: '52px', height: '52px', borderRadius: '50%',
+                backgroundColor: 'rgba(255,255,255,0.2)',
+                border: '2px solid rgba(255,255,255,0.5)',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                 flexShrink: 0,
               }}>
-                <span style={{ color: '#fff', fontWeight: 700, fontSize: '0.875rem', fontFamily: "'DM Sans', sans-serif" }}>SS</span>
+                <span style={{ color: '#fff', fontWeight: 700, fontSize: '0.9375rem' }}>SS</span>
               </div>
               <cite style={{ fontStyle: 'normal' }}>
-                <p style={{ fontWeight: 600, fontSize: '0.9375rem', color: 'var(--color-text)' }}>Sally Sparks-Cousins</p>
-                <p style={{ fontSize: '0.8125rem', color: 'var(--color-text-secondary)' }}>Founder, Team Sparkle &mdash; Melbourne, Australia</p>
+                <p style={{ fontWeight: 700, fontSize: '1rem', color: '#fff' }}>Sally Sparks-Cousins</p>
+                <p style={{ fontSize: '0.8125rem', color: 'rgba(255,255,255,0.75)' }}>Founder, Team Sparkle &mdash; Melbourne, Australia</p>
               </cite>
+              <div style={{ marginLeft: 'auto', display: 'flex', gap: '2px' }}>
+                {[...Array(5)].map((_, i) => (
+                  <svg key={i} width="14" height="14" viewBox="0 0 20 20" fill="rgba(255,255,255,0.8)" aria-hidden="true">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                ))}
+              </div>
             </footer>
           </blockquote>
 
-          {/* 2-col grid */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '1.25rem' }}>
+          {/* 2×2 fixed grid */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.25rem' }}
+            className="grid-cols-1 md:grid-cols-2">
             {[
               {
                 initials: 'JH',
-                quote: 'Having Tania on our team transformed how we operate. She managed our Kajabi platform, CRM, and newsletters flawlessly — our clients noticed the improvement immediately. She&rsquo;s reliable, sharp, and genuinely invested in outcomes.',
+                color: '#7c6d5e',
+                quote: 'Having Tania on our team transformed how we operate. She managed our Kajabi platform, CRM, and newsletters flawlessly — our clients noticed the improvement immediately. Reliable, sharp, and genuinely invested in outcomes.',
                 name: 'Jaye Hoelscher',
-                role: 'Founder, The Positivity Institute — Sydney, Australia',
+                role: 'Founder, The Positivity Institute',
+                location: 'Sydney, Australia',
               },
               {
                 initials: 'CM',
+                color: '#8a7260',
                 quote: 'Tania brought structure and calm to a fast-moving environment. Her inbox management, scheduling, and accounting support were exceptional. Any business would be lucky to have her in their corner.',
                 name: 'Charlene Miles Degoma',
-                role: 'Operations Lead, Hammerjack',
+                role: 'Operations Lead',
+                location: 'Hammerjack',
               },
               {
                 initials: 'ML',
-                quote: 'Tania consistently delivered above expectations. Her ability to manage complex workflows, build SOPs from scratch, and communicate with clients at a high level made her an invaluable part of our operations team.',
+                color: '#6b5c4e',
+                quote: 'Tania consistently delivered above expectations. Her ability to manage complex workflows, build SOPs from scratch, and communicate with clients at a high level made her invaluable to our team.',
                 name: 'Mark Louie D. Soriano',
-                role: 'Manager, Outsourced Doers',
+                role: 'Manager',
+                location: 'Outsourced Doers',
               },
               {
                 initials: 'JS',
+                color: '#9a8270',
                 quote: 'In hospitality, every detail matters — and Tania understood that instinctively. She handled guest concerns, billing, and team coordination with grace and professionalism. A true asset to any organization.',
                 name: 'Jennifer Sanchez-Tuballes',
-                role: 'Supervisor, Dusit International',
+                role: 'Supervisor',
+                location: 'Dusit International',
               },
-            ].map(({ initials, quote, name, role }) => (
+            ].map(({ initials, color, quote, name, role, location }) => (
               <blockquote key={name} style={{
                 backgroundColor: 'var(--color-card)',
                 border: '1px solid var(--color-border)',
-                borderRadius: '0.75rem',
+                borderRadius: '1rem',
                 padding: '1.75rem',
                 display: 'flex',
                 flexDirection: 'column',
-                gap: '1.25rem',
-                position: 'relative',
-                overflow: 'hidden',
-              }}>
-                <span aria-hidden="true" style={{
-                  position: 'absolute', top: '0.5rem', right: '1rem',
-                  fontFamily: "'Playfair Display', serif",
-                  fontSize: '5rem', lineHeight: 1,
-                  color: 'var(--color-accent)', opacity: 0.1,
-                  userSelect: 'none', pointerEvents: 'none',
-                }}>&ldquo;</span>
+                gap: '1rem',
+                transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+              }}
+                onMouseEnter={e => {
+                  e.currentTarget.style.transform = 'translateY(-3px)'
+                  e.currentTarget.style.boxShadow = '0 12px 32px rgba(90,74,58,0.12)'
+                }}
+                onMouseLeave={e => {
+                  e.currentTarget.style.transform = 'translateY(0)'
+                  e.currentTarget.style.boxShadow = 'none'
+                }}
+              >
+                {/* Stars */}
+                <div style={{ display: 'flex', gap: '2px' }}>
+                  {[...Array(5)].map((_, i) => (
+                    <svg key={i} width="13" height="13" viewBox="0 0 20 20" fill="var(--color-accent)" aria-hidden="true">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                  ))}
+                </div>
 
+                {/* Quote */}
                 <p style={{
                   fontSize: '0.9375rem',
-                  lineHeight: 1.7,
+                  lineHeight: 1.75,
                   color: 'var(--color-text-secondary)',
                   fontStyle: 'italic',
                   flex: 1,
-                }} dangerouslySetInnerHTML={{ __html: `&ldquo;${quote}&rdquo;` }} />
+                }}>
+                  &ldquo;{quote}&rdquo;
+                </p>
 
+                {/* Divider */}
+                <div style={{ height: '1px', backgroundColor: 'var(--color-border)' }} />
+
+                {/* Author */}
                 <footer style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                   <div style={{
-                    width: '40px', height: '40px', borderRadius: '50%',
-                    backgroundColor: 'var(--color-accent-light)',
-                    border: '1.5px solid var(--color-accent)',
+                    width: '42px', height: '42px', borderRadius: '50%',
+                    backgroundColor: color,
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
                     flexShrink: 0,
                   }}>
-                    <span style={{ color: 'var(--color-accent)', fontWeight: 700, fontSize: '0.75rem', fontFamily: "'DM Sans', sans-serif" }}>{initials}</span>
+                    <span style={{ color: '#fff', fontWeight: 700, fontSize: '0.8125rem' }}>{initials}</span>
                   </div>
                   <cite style={{ fontStyle: 'normal' }}>
-                    <p style={{ fontWeight: 600, fontSize: '0.875rem', color: 'var(--color-text)' }}>{name}</p>
-                    <p style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)', lineHeight: 1.4 }}>{role}</p>
+                    <p style={{ fontWeight: 600, fontSize: '0.875rem', color: 'var(--color-text)', lineHeight: 1.3 }}>{name}</p>
+                    <p style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)', lineHeight: 1.4 }}>{role} · {location}</p>
                   </cite>
                 </footer>
               </blockquote>
             ))}
           </div>
 
-          <p style={{ marginTop: '1.5rem', fontSize: '0.8125rem', color: 'var(--color-text-secondary)', fontStyle: 'italic', textAlign: 'center' }}>
-            * Testimonials are representative of work quality. Contact references available upon request.
+          <p style={{ marginTop: '1.75rem', fontSize: '0.8rem', color: 'var(--color-text-secondary)', fontStyle: 'italic', textAlign: 'center', opacity: 0.7 }}>
+            Testimonials are representative of work quality. Full references available upon request.
           </p>
         </div>
       </section>
