@@ -35,10 +35,10 @@ export default function Home() {
         EJS_SERVICE,
         EJS_TEMPLATE,
         {
-          from_name:    formData.name,
-          from_email:   formData.email,
-          message:      formData.message,
-          reply_to:     formData.email,
+          name:    formData.name,
+          email:   formData.email,
+          message: formData.message,
+          title:   formData.name,
         },
         EJS_PUBLIC,
       )
