@@ -56,9 +56,65 @@ export default function Home() {
     <div style={{ minHeight: '100dvh' }}>
 
       {/* ── NAV ── */}
-      <header style={{
-        position: 'sticky', top: 0, zIndex: 50,
+      {/* ── Full-screen mobile overlay menu ── */}
+      <div style={{
+        position: 'fixed', inset: 0, zIndex: 99,
         backgroundColor: 'var(--color-bg)',
+        display: 'flex', flexDirection: 'column',
+        alignItems: 'center', justifyContent: 'center',
+        gap: '0.5rem',
+        opacity: menuOpen ? 1 : 0,
+        transform: menuOpen ? 'scale(1)' : 'scale(0.96)',
+        transition: 'opacity 0.25s ease, transform 0.25s ease',
+        pointerEvents: menuOpen ? 'auto' : 'none',
+      }}>
+        {/* Subtle accent orb */}
+        <div aria-hidden="true" style={{
+          position: 'absolute', top: '10%', right: '10%',
+          width: '300px', height: '300px', borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(201,169,97,0.12) 0%, transparent 70%)',
+          filter: 'blur(40px)', pointerEvents: 'none',
+        }} />
+
+        {['About', 'Services', 'Experience', 'Testimonials', 'Contact'].map((s, i) => (
+          <a
+            key={s}
+            href={`#${s.toLowerCase()}`}
+            onClick={() => setMenuOpen(false)}
+            style={{
+              fontFamily: "'Playfair Display', serif",
+              fontSize: 'clamp(1.75rem, 8vw, 2.5rem)',
+              fontWeight: 600,
+              color: 'var(--color-text)',
+              textDecoration: 'none',
+              padding: '0.6rem 1.5rem',
+              borderRadius: '0.5rem',
+              transition: 'color 0.2s, background-color 0.2s',
+              transitionDelay: menuOpen ? `${i * 40}ms` : '0ms',
+              opacity: menuOpen ? 1 : 0,
+              transform: menuOpen ? 'translateY(0)' : 'translateY(10px)',
+            }}
+            onMouseEnter={e => { e.currentTarget.style.color = 'var(--color-accent)' }}
+            onMouseLeave={e => { e.currentTarget.style.color = 'var(--color-text)' }}
+          >
+            {s}
+          </a>
+        ))}
+
+        {/* Bottom accent */}
+        <div style={{ marginTop: '2rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+          <div style={{ width: '24px', height: '1px', backgroundColor: 'var(--color-accent)', opacity: 0.5 }} />
+          <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.8rem', color: 'var(--color-text-secondary)' }}>
+            Rachelle Tania Lopez
+          </span>
+          <div style={{ width: '24px', height: '1px', backgroundColor: 'var(--color-accent)', opacity: 0.5 }} />
+        </div>
+      </div>
+
+      {/* ── NAV ── */}
+      <header style={{
+        position: 'sticky', top: 0, zIndex: 100,
+        backgroundColor: menuOpen ? 'var(--color-bg)' : 'var(--color-bg)',
         borderBottom: '1px solid var(--color-border)',
         backdropFilter: 'blur(8px)',
       }}>
@@ -121,38 +177,6 @@ export default function Home() {
             </button>
           </div>
         </nav>
-
-        {/* Mobile dropdown menu — always mounted, animates in/out */}
-        <div style={{
-          overflow: 'hidden',
-          maxHeight: menuOpen ? '360px' : '0',
-          opacity: menuOpen ? 1 : 0,
-          transform: menuOpen ? 'translateY(0)' : 'translateY(-6px)',
-          transition: 'max-height 0.35s ease, opacity 0.25s ease, transform 0.25s ease',
-          borderTop: menuOpen ? '1px solid var(--color-border)' : 'none',
-          backgroundColor: 'var(--color-bg)',
-        }}>
-          <div style={{ padding: '1rem 1.5rem 1.5rem', display: 'flex', flexDirection: 'column' }}>
-            {['About', 'Services', 'Experience', 'Testimonials', 'Contact'].map(s => (
-              <a
-                key={s}
-                href={`#${s.toLowerCase()}`}
-                onClick={() => setMenuOpen(false)}
-                style={{
-                  fontFamily: "'DM Sans', sans-serif", fontSize: '1rem', fontWeight: 500,
-                  color: 'var(--color-text)', textDecoration: 'none',
-                  padding: '0.85rem 0',
-                  borderBottom: '1px solid var(--color-border)',
-                  transition: 'color 0.2s',
-                }}
-                onMouseEnter={e => (e.currentTarget.style.color = 'var(--color-accent)')}
-                onMouseLeave={e => (e.currentTarget.style.color = 'var(--color-text)')}
-              >
-                {s}
-              </a>
-            ))}
-          </div>
-        </div>
       </header>
 
       {/* ── HERO ── */}
