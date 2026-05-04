@@ -122,14 +122,17 @@ export default function Home() {
           </div>
         </nav>
 
-        {/* Mobile dropdown menu */}
-        {menuOpen && (
-          <div style={{
-            borderTop: '1px solid var(--color-border)',
-            backgroundColor: 'var(--color-bg)',
-            padding: '1rem 1.5rem 1.5rem',
-            display: 'flex', flexDirection: 'column', gap: '0',
-          }}>
+        {/* Mobile dropdown menu — always mounted, animates in/out */}
+        <div style={{
+          overflow: 'hidden',
+          maxHeight: menuOpen ? '360px' : '0',
+          opacity: menuOpen ? 1 : 0,
+          transform: menuOpen ? 'translateY(0)' : 'translateY(-6px)',
+          transition: 'max-height 0.35s ease, opacity 0.25s ease, transform 0.25s ease',
+          borderTop: menuOpen ? '1px solid var(--color-border)' : 'none',
+          backgroundColor: 'var(--color-bg)',
+        }}>
+          <div style={{ padding: '1rem 1.5rem 1.5rem', display: 'flex', flexDirection: 'column' }}>
             {['About', 'Services', 'Experience', 'Testimonials', 'Contact'].map(s => (
               <a
                 key={s}
@@ -149,7 +152,7 @@ export default function Home() {
               </a>
             ))}
           </div>
-        )}
+        </div>
       </header>
 
       {/* ── HERO ── */}
