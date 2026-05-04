@@ -88,12 +88,52 @@ export default function Home() {
       </header>
 
       {/* ── HERO ── */}
-      <section id="top" style={{ backgroundColor: 'var(--color-bg)', borderBottom: '1px solid var(--color-border)', overflow: 'hidden' }}>
-        <div style={{ maxWidth: '72rem', margin: '0 auto', padding: '4rem 1.5rem 0', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'flex-end' }}
+      <section id="top" style={{ position: 'relative', backgroundColor: 'var(--color-bg)', borderBottom: '1px solid var(--color-border)', overflow: 'hidden', minHeight: '92vh', display: 'flex', alignItems: 'center' }}>
+
+        {/* ── Background effects ── */}
+        {/* Orb 1 — large warm gold blur top-left */}
+        <div aria-hidden="true" style={{
+          position: 'absolute', top: '-10%', left: '-8%',
+          width: '520px', height: '520px', borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(201,169,97,0.18) 0%, transparent 70%)',
+          filter: 'blur(40px)', pointerEvents: 'none',
+        }} />
+        {/* Orb 2 — beige blur bottom-right */}
+        <div aria-hidden="true" style={{
+          position: 'absolute', bottom: '-15%', right: '-5%',
+          width: '600px', height: '600px', borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(232,220,200,0.35) 0%, transparent 65%)',
+          filter: 'blur(50px)', pointerEvents: 'none',
+        }} />
+        {/* Orb 3 — small accent center-right */}
+        <div aria-hidden="true" style={{
+          position: 'absolute', top: '30%', right: '30%',
+          width: '280px', height: '280px', borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(201,169,97,0.10) 0%, transparent 70%)',
+          filter: 'blur(30px)', pointerEvents: 'none',
+        }} />
+        {/* Subtle dot grid */}
+        <div aria-hidden="true" style={{
+          position: 'absolute', inset: 0, pointerEvents: 'none',
+          backgroundImage: 'radial-gradient(circle, rgba(90,74,58,0.10) 1px, transparent 1px)',
+          backgroundSize: '28px 28px',
+          maskImage: 'radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%)',
+          WebkitMaskImage: 'radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%)',
+        }} />
+        {/* Thin diagonal line accent */}
+        <div aria-hidden="true" style={{
+          position: 'absolute', top: 0, right: '42%',
+          width: '1px', height: '100%',
+          background: 'linear-gradient(to bottom, transparent, rgba(201,169,97,0.25) 40%, transparent)',
+          pointerEvents: 'none',
+        }} />
+
+        {/* ── Content ── */}
+        <div style={{ position: 'relative', zIndex: 1, maxWidth: '72rem', margin: '0 auto', padding: '2rem 1.5rem', width: '100%', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem', alignItems: 'center' }}
           className="grid-cols-1 md:grid-cols-2">
 
           {/* Left: Text */}
-          <div style={{ paddingBottom: '4rem' }}>
+          <div style={{ padding: '2rem 0' }}>
             <span className="section-label">Executive Assistant &amp; Operations Support</span>
 
             <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(2.5rem, 5vw, 4rem)', fontWeight: 700, lineHeight: 1.1, marginBottom: '1.25rem', color: 'var(--color-text)' }}>
@@ -127,14 +167,37 @@ export default function Home() {
           </div>
 
           {/* Right: Photo */}
-          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-end', position: 'relative' }}
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative', padding: '2rem 0' }}
             className="hidden md:flex">
+
+            {/* Decorative ring behind photo */}
+            <div aria-hidden="true" style={{
+              position: 'absolute',
+              width: '420px', height: '420px',
+              borderRadius: '50%',
+              border: '1.5px solid rgba(201,169,97,0.25)',
+              top: '50%', left: '50%',
+              transform: 'translate(-50%, -50%)',
+              pointerEvents: 'none',
+            }} />
+            <div aria-hidden="true" style={{
+              position: 'absolute',
+              width: '480px', height: '480px',
+              borderRadius: '50%',
+              border: '1px solid rgba(201,169,97,0.12)',
+              top: '50%', left: '50%',
+              transform: 'translate(-50%, -50%)',
+              pointerEvents: 'none',
+            }} />
+
+            {/* Photo frame */}
             <div style={{
-              position: 'relative', width: '380px', height: '480px',
-              borderRadius: '1.25rem 1.25rem 0 0',
+              position: 'relative', width: '360px', height: '440px',
+              borderRadius: '50% 50% 48% 48% / 40% 40% 60% 60%',
               overflow: 'hidden',
-              border: '1px solid var(--color-border)',
-              boxShadow: '0 24px 64px rgba(90, 74, 58, 0.15)',
+              border: '3px solid rgba(201,169,97,0.4)',
+              boxShadow: '0 32px 80px rgba(90,74,58,0.2), 0 0 0 8px rgba(201,169,97,0.07)',
+              zIndex: 1,
             }}>
               <Image
                 src="/tania-hero.webp"
@@ -143,27 +206,42 @@ export default function Home() {
                 priority
                 style={{ objectFit: 'cover', objectPosition: 'top center' }}
               />
-              {/* Gold accent overlay strip */}
+              {/* Inner glow overlay */}
               <div style={{
-                position: 'absolute', bottom: 0, left: 0, right: 0,
-                height: '4px',
-                background: 'linear-gradient(90deg, var(--color-accent), transparent)',
+                position: 'absolute', inset: 0,
+                background: 'linear-gradient(to bottom, transparent 60%, rgba(201,169,97,0.12) 100%)',
+                pointerEvents: 'none',
               }} />
             </div>
 
-            {/* Floating badge */}
+            {/* Floating badge — available */}
             <div style={{
-              position: 'absolute', bottom: '2rem', left: '-1.5rem',
+              position: 'absolute', bottom: '3.5rem', left: '-0.5rem', zIndex: 2,
               backgroundColor: 'var(--color-card)',
               border: '1px solid var(--color-border)',
               borderRadius: '0.75rem',
               padding: '0.75rem 1rem',
-              boxShadow: '0 8px 24px rgba(90, 74, 58, 0.12)',
-              display: 'flex', alignItems: 'center', gap: '0.5rem',
+              boxShadow: '0 8px 24px rgba(90,74,58,0.14)',
+              display: 'flex', alignItems: 'center', gap: '0.625rem',
             }}>
-              <span style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#4caf50', flexShrink: 0 }} />
+              <span style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#4ade80', flexShrink: 0, boxShadow: '0 0 6px #4ade80' }} />
               <span style={{ fontSize: '0.8125rem', fontWeight: 500, color: 'var(--color-text)', whiteSpace: 'nowrap' }}>
                 Available for new clients
+              </span>
+            </div>
+
+            {/* Floating badge — location */}
+            <div style={{
+              position: 'absolute', top: '3rem', right: '-1rem', zIndex: 2,
+              backgroundColor: 'var(--color-accent)',
+              borderRadius: '0.75rem',
+              padding: '0.625rem 1rem',
+              boxShadow: '0 8px 24px rgba(201,169,97,0.35)',
+              display: 'flex', alignItems: 'center', gap: '0.5rem',
+            }}>
+              <MapPin size={14} color="#fff" />
+              <span style={{ fontSize: '0.8125rem', fontWeight: 600, color: '#fff', whiteSpace: 'nowrap' }}>
+                Philippines · Remote
               </span>
             </div>
           </div>
