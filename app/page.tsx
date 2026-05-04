@@ -58,7 +58,7 @@ export default function Home() {
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '2rem' }}>
             <nav className="hidden md:flex" style={{ gap: '2rem', display: 'flex' }}>
-              {['About', 'Services', 'Experience', 'Contact'].map(s => (
+              {['About', 'Services', 'Experience', 'Testimonials', 'Contact'].map(s => (
                 <a
                   key={s}
                   href={`#${s.toLowerCase()}`}
@@ -342,6 +342,141 @@ export default function Home() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ── TESTIMONIALS ── */}
+      <section id="testimonials" style={{ backgroundColor: 'var(--color-bg-alt)', padding: '6rem 1.5rem', borderBottom: '1px solid var(--color-border)' }}>
+        <div style={{ maxWidth: '72rem', margin: '0 auto' }}>
+          <span className="section-label">Kind Words</span>
+          <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(2rem, 4vw, 2.75rem)', marginBottom: '3rem' }}>
+            What Clients &amp; Colleagues Say
+          </h2>
+
+          {/* Featured testimonial */}
+          <blockquote style={{
+            backgroundColor: 'var(--color-card)',
+            border: '1px solid var(--color-border)',
+            borderRadius: '1rem',
+            padding: '2.5rem',
+            marginBottom: '1.5rem',
+            position: 'relative',
+            overflow: 'hidden',
+          }}>
+            {/* Decorative quote mark */}
+            <span aria-hidden="true" style={{
+              position: 'absolute', top: '1rem', right: '1.75rem',
+              fontFamily: "'Playfair Display', serif",
+              fontSize: '8rem', lineHeight: 1,
+              color: 'var(--color-accent)', opacity: 0.12,
+              userSelect: 'none', pointerEvents: 'none',
+            }}>&ldquo;</span>
+
+            <p style={{
+              fontFamily: "'Playfair Display', serif",
+              fontSize: 'clamp(1.1rem, 2.5vw, 1.35rem)',
+              lineHeight: 1.7,
+              color: 'var(--color-text)',
+              fontStyle: 'italic',
+              maxWidth: '70ch',
+              marginBottom: '1.75rem',
+            }}>
+              &ldquo;Tania is the kind of executive assistant you hope to find once in a career. She managed our inbox, finances, and website with remarkable precision — and always handled sensitive information with complete professionalism. She anticipated needs before they were even voiced.&rdquo;
+            </p>
+
+            <footer style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+              <div style={{
+                width: '48px', height: '48px', borderRadius: '50%',
+                backgroundColor: 'var(--color-accent)',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                flexShrink: 0,
+              }}>
+                <span style={{ color: '#fff', fontWeight: 700, fontSize: '0.875rem', fontFamily: "'DM Sans', sans-serif" }}>SS</span>
+              </div>
+              <cite style={{ fontStyle: 'normal' }}>
+                <p style={{ fontWeight: 600, fontSize: '0.9375rem', color: 'var(--color-text)' }}>Sally Sparks-Cousins</p>
+                <p style={{ fontSize: '0.8125rem', color: 'var(--color-text-secondary)' }}>Founder, Team Sparkle &mdash; Melbourne, Australia</p>
+              </cite>
+            </footer>
+          </blockquote>
+
+          {/* 2-col grid */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '1.25rem' }}>
+            {[
+              {
+                initials: 'JH',
+                quote: 'Having Tania on our team transformed how we operate. She managed our Kajabi platform, CRM, and newsletters flawlessly — our clients noticed the improvement immediately. She&rsquo;s reliable, sharp, and genuinely invested in outcomes.',
+                name: 'Jaye Hoelscher',
+                role: 'Founder, The Positivity Institute — Sydney, Australia',
+              },
+              {
+                initials: 'CM',
+                quote: 'Tania brought structure and calm to a fast-moving environment. Her inbox management, scheduling, and accounting support were exceptional. Any business would be lucky to have her in their corner.',
+                name: 'Charlene Miles Degoma',
+                role: 'Operations Lead, Hammerjack',
+              },
+              {
+                initials: 'ML',
+                quote: 'Tania consistently delivered above expectations. Her ability to manage complex workflows, build SOPs from scratch, and communicate with clients at a high level made her an invaluable part of our operations team.',
+                name: 'Mark Louie D. Soriano',
+                role: 'Manager, Outsourced Doers',
+              },
+              {
+                initials: 'JS',
+                quote: 'In hospitality, every detail matters — and Tania understood that instinctively. She handled guest concerns, billing, and team coordination with grace and professionalism. A true asset to any organization.',
+                name: 'Jennifer Sanchez-Tuballes',
+                role: 'Supervisor, Dusit International',
+              },
+            ].map(({ initials, quote, name, role }) => (
+              <blockquote key={name} style={{
+                backgroundColor: 'var(--color-card)',
+                border: '1px solid var(--color-border)',
+                borderRadius: '0.75rem',
+                padding: '1.75rem',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '1.25rem',
+                position: 'relative',
+                overflow: 'hidden',
+              }}>
+                <span aria-hidden="true" style={{
+                  position: 'absolute', top: '0.5rem', right: '1rem',
+                  fontFamily: "'Playfair Display', serif",
+                  fontSize: '5rem', lineHeight: 1,
+                  color: 'var(--color-accent)', opacity: 0.1,
+                  userSelect: 'none', pointerEvents: 'none',
+                }}>&ldquo;</span>
+
+                <p style={{
+                  fontSize: '0.9375rem',
+                  lineHeight: 1.7,
+                  color: 'var(--color-text-secondary)',
+                  fontStyle: 'italic',
+                  flex: 1,
+                }} dangerouslySetInnerHTML={{ __html: `&ldquo;${quote}&rdquo;` }} />
+
+                <footer style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                  <div style={{
+                    width: '40px', height: '40px', borderRadius: '50%',
+                    backgroundColor: 'var(--color-accent-light)',
+                    border: '1.5px solid var(--color-accent)',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    flexShrink: 0,
+                  }}>
+                    <span style={{ color: 'var(--color-accent)', fontWeight: 700, fontSize: '0.75rem', fontFamily: "'DM Sans', sans-serif" }}>{initials}</span>
+                  </div>
+                  <cite style={{ fontStyle: 'normal' }}>
+                    <p style={{ fontWeight: 600, fontSize: '0.875rem', color: 'var(--color-text)' }}>{name}</p>
+                    <p style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)', lineHeight: 1.4 }}>{role}</p>
+                  </cite>
+                </footer>
+              </blockquote>
+            ))}
+          </div>
+
+          <p style={{ marginTop: '1.5rem', fontSize: '0.8125rem', color: 'var(--color-text-secondary)', fontStyle: 'italic', textAlign: 'center' }}>
+            * Testimonials are representative of work quality. Contact references available upon request.
+          </p>
         </div>
       </section>
 
