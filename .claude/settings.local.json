@@ -14,7 +14,9 @@
       "Bash(ssh-keyscan -t ed25519 github.com)",
       "Bash(ssh -T git@github.com)",
       "Bash(npm install *)",
-      "Bash(node .claude/skills/impeccable/scripts/load-context.mjs)"
+      "Bash(node .claude/skills/impeccable/scripts/load-context.mjs)",
+      "Bash(python3 .claude/skills/ui-ux-pro-max/scripts/search.py \"executive assistant freelancer portfolio warm beige cream professional\" --design-system -p \"Tania Portfolio\" -f markdown)",
+      "Bash(npm run *)"
     ]
   }
 }
