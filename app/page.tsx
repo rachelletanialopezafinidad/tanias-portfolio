@@ -208,7 +208,7 @@ export default function Home() {
                 alt="Rachelle Tania Lopez — Executive Assistant"
                 fill
                 priority
-                style={{ objectFit: 'cover', objectPosition: '50% 8%', transform: 'scale(1.12)', transformOrigin: 'top center' }}
+                style={{ objectFit: 'cover', objectPosition: '50% 0%', transform: 'scale(1.12) translateY(-6%)', transformOrigin: 'top center' }}
               />
               <div style={{
                 position: 'absolute', inset: 0,
