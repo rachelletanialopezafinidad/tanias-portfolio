@@ -173,7 +173,7 @@ export default function Home() {
               position: 'absolute',
               width: '400px', height: '400px',
               borderRadius: '50%',
-              border: '1.5px solid rgba(201,169,97,0.30)',
+              border: '2px solid rgba(201,169,97,0.72)',
               top: '50%', left: '50%',
               pointerEvents: 'none',
             }} />
@@ -181,7 +181,7 @@ export default function Home() {
               position: 'absolute',
               width: '460px', height: '460px',
               borderRadius: '50%',
-              border: '1px solid rgba(201,169,97,0.16)',
+              border: '1.5px solid rgba(201,169,97,0.48)',
               top: '50%', left: '50%',
               pointerEvents: 'none',
             }} />
@@ -189,7 +189,7 @@ export default function Home() {
               position: 'absolute',
               width: '520px', height: '520px',
               borderRadius: '50%',
-              border: '1px solid rgba(201,169,97,0.07)',
+              border: '1px solid rgba(201,169,97,0.28)',
               top: '50%', left: '50%',
               pointerEvents: 'none',
             }} />
