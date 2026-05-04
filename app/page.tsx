@@ -41,7 +41,7 @@ export default function Home() {
           message: formData.message,
           title:   formData.name,
         },
-        EJS_PUBLIC,
+        { publicKey: EJS_PUBLIC },
       )
       setFormStatus('sent')
     } catch {
