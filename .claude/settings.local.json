@@ -5,7 +5,16 @@
       "Bash(git init *)",
       "Bash(git config *)",
       "Bash(git add *)",
-      "Bash(git commit *)"
+      "Bash(git commit *)",
+      "Bash(git remote *)",
+      "Bash(git branch *)",
+      "Bash(git push *)",
+      "Bash(rm ~/.ssh/id_ed25519 ~/.ssh/id_ed25519.pub)",
+      "Bash(ssh-keygen -t ed25519 -C \"taniateamsparkle@gmail.com\" -f ~/.ssh/id_ed25519 -N \"\")",
+      "Bash(ssh-keyscan -t ed25519 github.com)",
+      "Bash(ssh -T git@github.com)",
+      "Bash(npm install *)",
+      "Bash(node .claude/skills/impeccable/scripts/load-context.mjs)"
     ]
   }
 }

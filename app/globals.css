@@ -1,21 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+@layer base {
+  :root {
+    /* Light mode */
+    --color-cream: #faf8f5;
+    --color-beige: #e8dcc8;
+    --color-warm-brown: #5a4a3a;
+    --color-soft-taupe: #9a8a78;
+    --color-accent: #c9a961;
+    --color-accent-hover: #b89652;
+    --color-bg: var(--color-cream);
+    --color-text: var(--color-warm-brown);
+    --color-text-secondary: var(--color-soft-taupe);
+    --color-border: var(--color-beige);
+    --color-card: white;
+  }
+
+  html.dark {
+    /* Dark mode */
+    --color-cream: #f5f2ee;
+    --color-beige: #3a3026;
+    --color-warm-brown: #f5f2ee;
+    --color-soft-taupe: #c9b8a8;
+    --color-accent: #e0b76f;
+    --color-accent-hover: #d4a955;
+    --color-bg: #1a1410;
+    --color-text: var(--color-cream);
+    --color-text-secondary: var(--color-soft-taupe);
+    --color-border: #3a3026;
+    --color-card: #2a2018;
+  }
+
+  * {
+    @apply transition-colors duration-300;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-[var(--color-bg)] text-[var(--color-text)];
+    font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold tracking-tight;
+  }
+
+  h1 {
+    @apply text-5xl md:text-6xl lg:text-7xl leading-tight;
+  }
+
+  h2 {
+    @apply text-4xl md:text-5xl leading-tight;
+  }
+
+  h3 {
+    @apply text-2xl md:text-3xl leading-snug;
+  }
+
+  h4 {
+    @apply text-xl md:text-2xl;
+  }
+
+  a {
+    @apply text-[var(--color-accent)] hover:text-[var(--color-accent-hover)] transition-colors;
+  }
 }
 
-html {
-  scroll-behavior: smooth;
-}
+/* Smooth transitions */
+@layer components {
+  .transition-all-smooth {
+    @apply transition-all duration-300 ease-out;
+  }
 
-body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  .shadow-soft {
+    @apply shadow-sm;
+  }
+
+  .shadow-warm {
+    box-shadow: 0 4px 6px rgba(90, 74, 58, 0.08);
+  }
+
+  html.dark .shadow-warm {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  }
+
+  .btn-primary {
+    @apply bg-[var(--color-accent)] text-white px-6 py-3 rounded-lg font-semibold
+           hover:bg-[var(--color-accent-hover)] transition-all-smooth
+           focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--color-accent)];
+  }
+
+  .btn-secondary {
+    @apply bg-[var(--color-border)] text-[var(--color-text)] px-6 py-3 rounded-lg font-semibold
+           hover:bg-[var(--color-beige)] transition-all-smooth
+           focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--color-accent)];
+  }
+
+  .card {
+    @apply bg-[var(--color-card)] rounded-lg p-6 shadow-warm transition-all-smooth
+           hover:shadow-md hover:-translate-y-1;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-3 rounded-lg bg-[var(--color-bg)] text-[var(--color-text)]
+           border border-[var(--color-border)] focus:outline-none focus:ring-2
+           focus:ring-[var(--color-accent)] focus:border-transparent transition-all-smooth;
+  }
 }
