@@ -57,7 +57,7 @@ export default function Home() {
           </a>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '2rem' }}>
-            <nav className="hidden md:flex" style={{ gap: '2rem', display: 'flex' }}>
+            <nav className="nav-links" style={{ gap: '2rem', display: 'flex' }}>
               {['About', 'Services', 'Experience', 'Testimonials', 'Contact'].map(s => (
                 <a
                   key={s}
@@ -129,8 +129,7 @@ export default function Home() {
         }} />
 
         {/* ── Content ── */}
-        <div style={{ position: 'relative', zIndex: 1, maxWidth: '72rem', margin: '0 auto', padding: '2rem 1.5rem', width: '100%', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem', alignItems: 'center' }}
-          className="grid-cols-1 md:grid-cols-2">
+        <div className="grid-hero" style={{ position: 'relative', zIndex: 1, maxWidth: '72rem', margin: '0 auto', padding: '2rem 1.5rem', width: '100%' }}>
 
           {/* Left: Text */}
           <div style={{ padding: '2rem 0' }}>
@@ -166,33 +165,38 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Right: Photo */}
-          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative', padding: '2rem 0' }}
-            className="hidden md:flex">
+          {/* Right: Photo — visible on all sizes, stacks above text on mobile */}
+          <div className="hero-photo-wrap" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative', padding: '2rem 0' }}>
 
-            {/* Decorative ring behind photo */}
-            <div aria-hidden="true" style={{
+            {/* Pulsing rings */}
+            <div aria-hidden="true" className="hero-ring-1 ring-pulse-inner" style={{
               position: 'absolute',
-              width: '420px', height: '420px',
+              width: '400px', height: '400px',
               borderRadius: '50%',
-              border: '1.5px solid rgba(201,169,97,0.25)',
+              border: '1.5px solid rgba(201,169,97,0.30)',
               top: '50%', left: '50%',
-              transform: 'translate(-50%, -50%)',
               pointerEvents: 'none',
             }} />
-            <div aria-hidden="true" style={{
+            <div aria-hidden="true" className="hero-ring-2 ring-pulse-outer" style={{
               position: 'absolute',
-              width: '480px', height: '480px',
+              width: '460px', height: '460px',
               borderRadius: '50%',
-              border: '1px solid rgba(201,169,97,0.12)',
+              border: '1px solid rgba(201,169,97,0.16)',
               top: '50%', left: '50%',
-              transform: 'translate(-50%, -50%)',
+              pointerEvents: 'none',
+            }} />
+            <div aria-hidden="true" className="hero-ring-3 ring-pulse-far" style={{
+              position: 'absolute',
+              width: '520px', height: '520px',
+              borderRadius: '50%',
+              border: '1px solid rgba(201,169,97,0.07)',
+              top: '50%', left: '50%',
               pointerEvents: 'none',
             }} />
 
             {/* Photo frame */}
-            <div style={{
-              position: 'relative', width: '360px', height: '440px',
+            <div className="hero-photo-frame" style={{
+              position: 'relative', width: '340px', height: '420px',
               borderRadius: '50% 50% 48% 48% / 40% 40% 60% 60%',
               overflow: 'hidden',
               border: '3px solid rgba(201,169,97,0.4)',
@@ -206,7 +210,6 @@ export default function Home() {
                 priority
                 style={{ objectFit: 'cover', objectPosition: 'top center' }}
               />
-              {/* Inner glow overlay */}
               <div style={{
                 position: 'absolute', inset: 0,
                 background: 'linear-gradient(to bottom, transparent 60%, rgba(201,169,97,0.12) 100%)',
@@ -215,7 +218,7 @@ export default function Home() {
             </div>
 
             {/* Floating badge — available */}
-            <div style={{
+            <div className="hero-badge-available" style={{
               position: 'absolute', bottom: '3.5rem', left: '-0.5rem', zIndex: 2,
               backgroundColor: 'var(--color-card)',
               border: '1px solid var(--color-border)',
@@ -231,7 +234,7 @@ export default function Home() {
             </div>
 
             {/* Floating badge — location */}
-            <div style={{
+            <div className="hero-badge-location" style={{
               position: 'absolute', top: '3rem', right: '-1rem', zIndex: 2,
               backgroundColor: 'var(--color-accent)',
               borderRadius: '0.75rem',
@@ -256,8 +259,7 @@ export default function Home() {
             The Assistant Who Thinks Ahead
           </h2>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'start' }}
-            className="grid-cols-1 md:grid-cols-2">
+          <div className="grid-2col" style={{ gap: '3rem', alignItems: 'start' }}>
             <div>
               <p style={{ fontSize: '1.0625rem', lineHeight: 1.75, color: 'var(--color-text-secondary)', marginBottom: '1.25rem' }}>
                 I'm Rachelle Tania — a Virtual Executive Assistant and Operations professional based in the Philippines. I thrive in remote environments where discretion, adaptability, and reliability aren't just expectations, they're the baseline.
@@ -520,8 +522,7 @@ export default function Home() {
           </blockquote>
 
           {/* 2×2 fixed grid */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.25rem' }}
-            className="grid-cols-1 md:grid-cols-2">
+          <div className="grid-2col" style={{ gap: '1.25rem' }}>
             {[
               {
                 initials: 'JH',
@@ -625,8 +626,7 @@ export default function Home() {
 
       {/* ── CONTACT ── */}
       <section id="contact" style={{ backgroundColor: 'var(--color-bg-alt)', padding: '6rem 1.5rem' }}>
-        <div style={{ maxWidth: '72rem', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'start' }}
-          className="grid-cols-1 md:grid-cols-2">
+        <div className="grid-2col" style={{ maxWidth: '72rem', margin: '0 auto', gap: '4rem', alignItems: 'start' }}>
 
           {/* Left */}
           <div>
