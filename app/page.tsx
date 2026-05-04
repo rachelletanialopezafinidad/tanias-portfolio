@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
-import { Moon, Sun, ArrowRight, Mail, Phone, MapPin, Check, ChevronRight } from 'lucide-react'
+import { Moon, Sun, ArrowRight, Mail, Phone, MapPin, Check, ChevronRight, Menu, X } from 'lucide-react'
 import emailjs from '@emailjs/browser'
 
 const EJS_SERVICE  = 'service_sixko14'
@@ -12,6 +12,7 @@ const EJS_PUBLIC   = 'TuUH5LwvTYL9DQU6FEs8h'
 export default function Home() {
   const [isDark, setIsDark] = useState(false)
   const [mounted, setMounted] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
   const [formData, setFormData] = useState({ name: '', email: '', message: '' })
   const [formStatus, setFormStatus] = useState<'idle' | 'sending' | 'sent'>('idle')
 
@@ -69,14 +70,15 @@ export default function Home() {
             href="#top"
             style={{ textDecoration: 'none' }}
             aria-label="Back to top"
-            onClick={e => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }) }}
+            onClick={e => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); setMenuOpen(false) }}
           >
             <span style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.35rem', fontWeight: 700, color: 'var(--color-accent)', letterSpacing: '-0.01em' }}>
               Rachelle Tania
             </span>
           </a>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '2rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+            {/* Desktop nav links */}
             <nav className="nav-links" style={{ gap: '2rem', display: 'flex' }}>
               {['About', 'Services', 'Experience', 'Testimonials', 'Contact'].map(s => (
                 <a
@@ -91,6 +93,7 @@ export default function Home() {
               ))}
             </nav>
 
+            {/* Theme toggle */}
             <button
               onClick={toggleTheme}
               aria-label="Toggle theme"
@@ -103,8 +106,52 @@ export default function Home() {
             >
               {isDark ? <Sun size={18} /> : <Moon size={18} />}
             </button>
+
+            {/* Hamburger — mobile only */}
+            <button
+              className="nav-hamburger"
+              onClick={() => setMenuOpen(o => !o)}
+              aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+              style={{
+                padding: '0.5rem', borderRadius: '0.5rem', border: '1.5px solid var(--color-border)',
+                backgroundColor: 'var(--color-bg)', color: 'var(--color-text)', cursor: 'pointer',
+                alignItems: 'center', justifyContent: 'center',
+                transition: 'border-color 0.2s',
+              }}
+            >
+              {menuOpen ? <X size={18} /> : <Menu size={18} />}
+            </button>
           </div>
         </nav>
+
+        {/* Mobile dropdown menu */}
+        {menuOpen && (
+          <div style={{
+            borderTop: '1px solid var(--color-border)',
+            backgroundColor: 'var(--color-bg)',
+            padding: '1rem 1.5rem 1.5rem',
+            display: 'flex', flexDirection: 'column', gap: '0',
+          }}>
+            {['About', 'Services', 'Experience', 'Testimonials', 'Contact'].map(s => (
+              <a
+                key={s}
+                href={`#${s.toLowerCase()}`}
+                onClick={() => setMenuOpen(false)}
+                style={{
+                  fontFamily: "'DM Sans', sans-serif", fontSize: '1rem', fontWeight: 500,
+                  color: 'var(--color-text)', textDecoration: 'none',
+                  padding: '0.85rem 0',
+                  borderBottom: '1px solid var(--color-border)',
+                  transition: 'color 0.2s',
+                }}
+                onMouseEnter={e => (e.currentTarget.style.color = 'var(--color-accent)')}
+                onMouseLeave={e => (e.currentTarget.style.color = 'var(--color-text)')}
+              >
+                {s}
+              </a>
+            ))}
+          </div>
+        )}
       </header>
 
       {/* ── HERO ── */}

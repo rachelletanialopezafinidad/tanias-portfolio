@@ -194,6 +194,9 @@
 
 /* ── Responsive grid overrides ── */
 /* These classes beat inline gridTemplateColumns on mobile */
+/* Hamburger hidden on desktop */
+.nav-hamburger { display: none; }
+
 .grid-2col {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -229,6 +232,9 @@
 
   /* Nav links: hide on mobile */
   .nav-links { display: none !important; }
+
+  /* Hamburger: show on mobile */
+  .nav-hamburger { display: flex !important; }
 
   /* Section padding tighter on mobile */
   .section-pad { padding: 4rem 1.25rem !important; }
